@@ -21,6 +21,8 @@ static const int RXPin = 16, TXPin = 17;
 static const uint32_t GPSBaud = 9600;
 //AskSensors MQTT config
 const char* mqtt_server = "mqtt.asksensors.com";
+const char* mqttUser = "username";                //MQTT broker username
+const char* mqttPassword = "password";        //MQTT broker user password
 unsigned int mqtt_port = 1883;
 
 // objects
@@ -112,7 +114,7 @@ void reconnect() {
 while (!client.connected()) {
 Serial.print("********** Attempting MQTT connection...");
 // Attempt to connect
-if (client.connect("ESP32Client", username, "")) {
+if (client.connect("ESP32Client", username, mqttUser, mqttPassword )) {
 Serial.println("-> MQTT client connected");
 } else {
 Serial.print("failed, rc=");
